@@ -13,12 +13,14 @@ namespace MVC_Identity.Controllers
         private readonly ILogger<HomeController> _logger;
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager )
+        public HomeController(ILogger<HomeController> logger, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager )
         {
             _logger = logger;
             _userManager= userManager;
             _signInManager= signInManager;
+            _roleManager= roleManager;
         }
 
         public IActionResult Index()
