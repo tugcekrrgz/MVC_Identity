@@ -25,6 +25,7 @@ namespace MVC_Identity.Controllers
 
         public IActionResult Index()
         {
+            ViewBag.Users = _userManager.Users.ToList();
             return View();
         }
 
@@ -80,6 +81,49 @@ namespace MVC_Identity.Controllers
         {
             return View();
         }
+
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> CreateRole(string roleName)
+        {
+            if (roleName != null)
+            {
+                IdentityRole role=new IdentityRole();
+                role.Name = roleName;
+                var result=await _roleManager.CreateAsync(role);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            else
+            {
+                return View();
+            }            
+        }
+
+
+        public async Task<IActionResult> AddAdmin(string id)
+        {
+            var user = await _userManager.FindByIdAsync(id);
+            var result= await _userManager.AddToRoleAsync(user,"admin");
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+        }
+
 
         [HttpPost]
         public async Task<IActionResult> Login(LoginDTO login)
