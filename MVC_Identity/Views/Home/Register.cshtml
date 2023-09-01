@@ -1,0 +1,40 @@
+﻿@model RegisterDTO
+@{
+    ViewData["Title"] = "Register";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="col-md-9 mx-auto">
+    <form method="post">
+        <div asp-validation-summary="All">
+        </div>
+        <div class="mt-2">
+            <label>Kullanıcı Adı : </label>
+            <input type="text" class="form-control" asp-for="Username" />
+            <span asp-validation-for="Username"></span>
+        </div>
+
+        <div class="mt-2">
+            <label>Email : </label>
+            <input type="text" class="form-control" asp-for="Email" />
+            <span asp-validation-for="Email"></span>
+        </div>
+
+        <div class="mt-2">
+            <label>Şifre : </label>
+            <input type="password" class="form-control" asp-for="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+
+        <div class="mt-2">
+            <label>Şifre Tekrarı : </label>
+            <input type="password" class="form-control" asp-for="ConfirmPassword" />
+            <span asp-validation-for="ConfirmPassword"></span>
+        </div>
+
+        <button type="submit" class="btn btn-primary mt-2">Register</button>
+    </form>
+</div>
+
+
+
